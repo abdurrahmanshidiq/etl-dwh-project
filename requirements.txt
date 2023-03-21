@@ -1,0 +1,8 @@
+numpy
+pandas
+requests
+python-dotenv
+sqlalchemy
+psycopg2-binary
+temp
+apache-airflow-providers-postgres
