@@ -27,9 +27,9 @@
 7. sample DAG airflow
   - Raw layer
     ![raw](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/raw.png "raw")<br>
-  - DWH layer
+  - DWH layer : to set dependecy with raw layer, I use external task sensor. DAGs on dwh will be executed after DAGs on raw finished
     ![dwh](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/dwh.png "dwh")<br>
-  - Datamart layer
+  - Datamart layer : same with DAGs on dwh. DAGs on datamart be executed after DAGs on raw & dwh finished
     ![datamart](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/datamart.png "datamart")<br>
   - load csv
     ![load_csv](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/load_csv.png "load_csv")<br>
