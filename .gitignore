@@ -5,3 +5,4 @@ data/
 logs/
 plugins/
 env-project/
+dags/__pyache__/
