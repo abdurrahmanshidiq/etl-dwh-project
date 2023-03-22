@@ -23,7 +23,7 @@
   - data source
     ![yelp-erd-source](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/yelp-erd-source.png "yelp-erd-source")<br>
   - data warehouse (starschema)
-    ![yelp-erd-dwh](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/yelp-erd-dwh.png "yelp-erd-dwh")<br>
+    ![yelp-erd-dwh](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/yelp-erd-dwh.jpg "yelp-erd-dwh")<br>
 7. sample DAG airflow
   - Raw layer
     ![raw](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/raw.png "raw")<br>
