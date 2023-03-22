@@ -76,7 +76,8 @@ def extract_load():
 
 
 with DAG(dag_id=DAG_ID, start_date=datetime(2023, 3, 18), 
-        schedule_interval='@once', catchup=False) as dag:
+        schedule_interval='@once', catchup=False,
+        tags=['raw', 'digitalskola']) as dag:
     
     start = EmptyOperator(
         task_id=f"start_{DAG_ID}"
