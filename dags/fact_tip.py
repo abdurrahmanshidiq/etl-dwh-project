@@ -7,7 +7,7 @@ from datetime import datetime
 import os
 import logging
 
-DAG_ID = 'dwh_fact_review'
+DAG_ID = 'dwh_fact_tip'
 
 with DAG(dag_id=DAG_ID, start_date=datetime(2023, 3, 18), 
         schedule_interval='@once', catchup=False) as dag:
@@ -15,10 +15,10 @@ with DAG(dag_id=DAG_ID, start_date=datetime(2023, 3, 18),
     start = EmptyOperator(
         task_id=f"start_{DAG_ID}"
     )
-    wait_extract_raw_review = ExternalTaskSensor(
-        task_id = 'wait_extract_raw_review',
-        external_task_id='end_raw_review',
-        external_dag_id='raw_review'
+    wait_extract_raw_tip = ExternalTaskSensor(
+        task_id = 'wait_extract_raw_tip',
+        external_task_id='end_raw_tip',
+        external_dag_id='raw_tip'
 
     )
 
@@ -40,7 +40,7 @@ with DAG(dag_id=DAG_ID, start_date=datetime(2023, 3, 18),
         task_id='drop_table',
         postgres_conn_id='postgres',
         sql='''
-            DROP TABLE IF EXISTS dwh.fact_review
+            DROP TABLE IF EXISTS dwh.fact_tip
         '''
     )
 
@@ -48,17 +48,14 @@ with DAG(dag_id=DAG_ID, start_date=datetime(2023, 3, 18),
         task_id='create_table',
         postgres_conn_id='postgres',
         sql='''
-            CREATE TABLE IF NOT EXISTS dwh.fact_review(
-                fr_review_id VARCHAR(256) NOT NULL PRIMARY KEY,
-                fr_user_id VARCHAR(256) NOT NULL,
-                fr_business_id VARCHAR(256) NOT NULL,
-                fr_location_id VARCHAR(256) NOT NULL,
-                stars DOUBLE PRECISION,
-                useful INTEGER,
-                funny INTEGER,
-                cool INTEGER,
+            CREATE TABLE IF NOT EXISTS dwh.fact_tip(
+                ft_tip_id VARCHAR(256) NOT NULL PRIMARY KEY,
+                ft_user_id VARCHAR(256) NOT NULL,
+                ft_business_id VARCHAR(256) NOT NULL,
+                ft_location_id VARCHAR(256) NOT NULL,
                 text TEXT,
-                date_review TIMESTAMP
+                date_tip TIMESTAMP,
+                compliment_count INTEGER
             );
         '''
     )
@@ -66,13 +63,13 @@ with DAG(dag_id=DAG_ID, start_date=datetime(2023, 3, 18),
     populate_table = PostgresOperator(
         task_id='populate_table',
         postgres_conn_id='postgres',
-        sql='sql/fact_review.sql'
+        sql='sql/fact_tip.sql'
     )
 
     end = EmptyOperator(
         task_id=f"end_{DAG_ID}"
     )
 
-    start >> [wait_extract_raw_review,
+    start >> [wait_extract_raw_tip,
               wait_extract_raw_business,
               wait_extract_dwh_dim_location] >> drop_table >> create_table >> populate_table >> end
