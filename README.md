@@ -30,6 +30,6 @@
   - DWH layer
     ![dwh](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/dwh.png "dwh")<br>
   - Datamart layer
-    ![datamart](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/dwh.png "datamart")<br>
+    ![datamart](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/datamart.png "datamart")<br>
   - load csv
-    ![load_csv](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/dwh.png "load_csv")<br>
+    ![load_csv](https://github.com/abdurrahmanshidiq/etl-dwh-project/blob/master/img/load_csv.png "load_csv")<br>
